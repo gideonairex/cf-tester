@@ -1,0 +1,9 @@
+{
+	"credentials" : {
+		"username" : "xxxxx",
+		"password" : "xxxxx"
+	},
+	"api" : {
+		"gateway"  : "xxxxx"
+	}
+}

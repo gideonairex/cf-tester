@@ -1,7 +1,7 @@
 'use strict';
 
-var request = require( 'request' );
-var fs      = require( 'fs' );
+/* jshint expr: true */
+/* eslint no-unused-expressions:0 */
 
 var helper = require( '../init' );
 
@@ -13,44 +13,24 @@ describe( 'Get learning targets', function () {
 
 	before( function ( done ) {
 
-		helper.login.done( function ( access, error ) {
+		// Request uri
+		var uri =  'CfJsonAPIService.cfc?method=cfJsonAPI';
 
-			var data = {
+		// Payload
+		var data = {
 
-				'path'   : 'com.schoolimprovement.pd360.dao.portfolio.PortfolioClientPersonnelGateway',
-				'method' : 'getProfessionalLearningPlansForLearningTargets',
-				'args'   : {
-					'persId' : '1414881'
-				}
+			'path'   : 'com.schoolimprovement.pd360.dao.portfolio.PortfolioClientPersonnelGateway',
+			'method' : 'getProfessionalLearningPlansForLearningTargets',
+			'args'   : {
+				'persId' : '1414881'
+			}
 
-			};
+		};
 
-			helper.signature( data.method, data.args, access ).done( function( signature, signatureError ) {
-
-				// Assign signature
-				data.signature = signature.replace(/"/g, "");
-
-				request.post( {
-					'uri'     : access.gateway + 'CfJsonAPIService.cfc?method=cfJsonAPI',
-					'headers' : {
-						'Cookie'       : access.cookies.cookieString,
-						'Content-Type' : 'application/json'
-					},
-					'body' : JSON.stringify( data )
-				}, function ( error, load, body ) {
-
-					requestLoad = {
-						'error'   : error,
-						'request' : load,
-						'body'    : JSON.parse( body )
-					};
-
-					done();
-
-				} );
-
-			} );
-
+		// Run request
+		helper.fetch( data, uri, function ( load ) {
+			requestLoad = load;
+			done();
 		} );
 
 	} );
@@ -83,6 +63,4 @@ describe( 'Get learning targets', function () {
 
 	} );
 
-
 } );
-
