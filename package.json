@@ -1,0 +1,16 @@
+{
+  "name": "cf-tester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Gideon Rosales",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.53.0",
+    "should": "^5.2.0",
+    "when": "^3.7.2"
+  }
+}
